@@ -6,8 +6,7 @@ $dbname = "business";
 
 try
 {
-    $conn = new PDO("mysql:host=$serverName;dbname=$dbname;charset=UTF8", 
-            $userName, $userPassword);  
+    $conn = new PDO(____________________________________);  
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);       
 
 } catch (PDOException $e) {

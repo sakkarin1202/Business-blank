@@ -1,24 +1,23 @@
 <?php
 
-if (isset($_POST['CustomerID'])) {
-    require '../connect.php';
+if (isset($_POST['____________'])) {
+    require '____________';
 
     $CustomerID = $_POST['CustomerID'];
-    $Name = $_POST['Name'];
-    $Email =  $_POST['Email'];
+    ____________
+    ____________
 
     echo 'CustomerID = ' . $CustomerID;
     echo 'Name = ' . $Name;
-    echo 'Email = ' . $Email;
- 
+    echo 'Email = ' . $Email; 
 
-    // $stmt = $conn->prepare("UPDATE  Customer SET Name=:Name, Email=:Email WHERE CustomerID=:CustomerID");
+    
     $stmt = $conn->prepare(
-        'UPDATE  Customer SET Name=:Name, Email=:Email WHERE CustomerID=:CustomerID'
+        'UPDATE  Customer ____________________________________'
     );
-    $stmt->bindParam(':CustomerID', $CustomerID);
-    $stmt->bindParam(':Name', $Name);
-    $stmt->bindParam(':Email', $Email);
+    ____________
+    ____________
+    ____________
     $stmt->execute();
 
     echo '
@@ -39,7 +38,7 @@ if (isset($_POST['CustomerID'])) {
                 timer: 2500,
                 showConfirmButton: false
               }, function(){
-                    window.location.href = "index.php";
+                    window.location.href = "____________";
               });
         });
         
