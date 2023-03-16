@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 	<title>User Registration</title>
 </head>
 <body>
@@ -53,32 +54,37 @@ if (isset($_POST['submit'])) {
 
 
 
-	<h1>ฟอร์มเพิ่มข้อมูลลูกค้า</h1>
-	<form  action="________________________" method="____________">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4"> <br>
+            <h3>ฟอร์มเพิ่มข้อมูลลูกค้า</h3>
+            <form  action="________________________" method="____________">
 
-	  <input type="text" placeholder="Enter Customer ID" name="customerID"> 
-	  <br> <br>
-	  <input type="text" placeholder="Name" name="name">
-	  <br> <br>
-	  <input type="date" placeholder="Birthdate" name="birthdate">
-	  <br> <br>
-	  <input type="email" placeholder="Email" name="email">
-	  <br> <br>     
-	  <input type="number" placeholder="OutStanding debt" name="outstandingDebt">
-      <br> <br> 
-      <label>Select a country code</label>
-        <select name="countrycode">
-            <?php while ($cc = $stmt_s->fetch(PDO::FETCH_ASSOC)) { ?>
-                <option value="<?php echo $cc['____________']; ?>">
-                    <?php echo $cc['____________']; ?>
-                </option>
-            <?php } ?>
-        </select>       
-      <br> <br>
+            <input type="text" placeholder="Enter Customer ID" name="customerID"> 
+            <br> <br>
+            <input type="text" placeholder="Name" name="name">
+            <br> <br>
+            <input type="date" placeholder="Birthdate" name="birthdate">
+            <br> <br>
+            <input type="email" placeholder="Email" name="email">
+            <br> <br>     
+            <input type="number" placeholder="OutStanding debt" name="outstandingDebt">
+            <br> <br> 
+            <label>Select a country code</label>
+                <select name="countrycode">
+                    <?php while ($cc = $stmt_s->fetch(PDO::FETCH_ASSOC)) { ?>
+                        <option value="<?php echo $cc['____________']; ?>">
+                            <?php echo $cc['____________']; ?>
+                        </option>
+                    <?php } ?>
+                </select>       
+            <br> <br>
 
-	  <input type="submit" value="Submit" name="submit" />
-	</form>
-
+            <input type="submit" value="Submit" name="submit" />
+            </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
