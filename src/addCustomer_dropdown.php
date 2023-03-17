@@ -11,31 +11,32 @@
 
 
 <?php
-require '____________';
+require '../connect.php';
 
 $sql_select = 'select * from country order by CountryCode';
-$stmt_s = $conn->prepare(________________________);
-________________________
+$stmt_s = $conn->prepare($sql_select);
+$stmt_s->execute();
 
 if (isset($_POST['submit'])) {
     
-    if (!empty($_POST['customerID']) && !empty($_POST['name'])) {
-        echo '<br>' . $_POST['customerID'];
+    if (!empty($_POST['CustomerID']) && !empty($_POST['Name'])) {
+        echo'countrycode'.$_POST['CountryCode'];
+        echo '<br>' . $_POST['CustomerID'];
         //require 'connect.php';
 
-        $sql = ____________________________________
+        $sql = "INSERT INTO customer  VALUES (:CustomerID, :Name, :Birthdate, :Email, :CountryCode, :OutstandingDebt )";
 
-        $stmt = $conn->prepare(____________);
-        $stmt->bindParam(':customerID', $_POST['customerID']);
-        ____________
-        ____________
-        ____________
-        ____________
-        ____________
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':CustomerID', $_POST['CustomerID']);
+        $stmt->bindParam(':Name',$_POST['Name']);
+        $stmt->bindParam(':Birthdate',$_POST['Birthdate']);
+        $stmt->bindParam(':Email',$_POST['Email']);
+        $stmt->bindParam(':CountryCode',$_POST['CountryCode']);
+        $stmt->bindParam(':OutstandingDebt',$_POST['OutstandingDebt']);
         
 
         try {
-            if (____________):
+            if ($stmt->execute()):
                 $message = 'Successfully add new customer';
             else:
                 $message = 'Fail to add new customer';
@@ -48,7 +49,7 @@ if (isset($_POST['submit'])) {
         $conn = null;
     }
 
-    header(________________________);
+    header("Location:index.php");
 }
 ?>
 
@@ -58,23 +59,23 @@ if (isset($_POST['submit'])) {
       <div class="row">
         <div class="col-md-4"> <br>
             <h3>ฟอร์มเพิ่มข้อมูลลูกค้า</h3>
-            <form  action="________________________" method="____________">
+            <form  action="addCustomer_dropdown.php" method="POST">
 
-            <input type="text" placeholder="Enter Customer ID" name="customerID"> 
+            <input type="text" placeholder="Enter Customer ID" name="CustomerID"> 
             <br> <br>
-            <input type="text" placeholder="Name" name="name">
+            <input type="text" placeholder="Name" name="Name">
             <br> <br>
-            <input type="date" placeholder="Birthdate" name="birthdate">
+            <input type="date" placeholder="Birthdate" name="Birthdate">
             <br> <br>
-            <input type="email" placeholder="Email" name="email">
+            <input type="email" placeholder="Email" name="Email">
             <br> <br>     
-            <input type="number" placeholder="OutStanding debt" name="outstandingDebt">
+            <input type="number" placeholder="OutStanding debt" name="OutstandingDebt">
             <br> <br> 
             <label>Select a country code</label>
-                <select name="countrycode">
+                <select name="CountryCode">
                     <?php while ($cc = $stmt_s->fetch(PDO::FETCH_ASSOC)) { ?>
-                        <option value="<?php echo $cc['____________']; ?>">
-                            <?php echo $cc['____________']; ?>
+                        <option value="<?php echo $cc['CountryCode']; ?>">
+                            <?php echo $cc['CountryName']; ?>
                         </option>
                     <?php } ?>
                 </select>       

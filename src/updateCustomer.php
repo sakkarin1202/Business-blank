@@ -1,11 +1,11 @@
 <?php
 
-if (isset($_POST['____________'])) {
-    require '____________';
+if (isset($_POST['CustomerID'])) {
+    require '../connect.php';
 
     $CustomerID = $_POST['CustomerID'];
-    ____________
-    ____________
+    $Name = $_POST['Name'];
+    $Email = $_POST['Email'];
 
     echo 'CustomerID = ' . $CustomerID;
     echo 'Name = ' . $Name;
@@ -13,11 +13,11 @@ if (isset($_POST['____________'])) {
 
     
     $stmt = $conn->prepare(
-        'UPDATE  Customer ____________________________________'
+        'UPDATE  Customer Set Name=:Name, Email=:Email WHERE CustomerID=:CustomerID'
     );
-    ____________
-    ____________
-    ____________
+    $stmt->bindparam(':Name',$_POST['Name']);
+    $stmt->bindparam(':Email',$_POST['Email']);
+    $stmt->bindparam(':CustomerID', $_POST['CustomerID']);
     $stmt->execute();
 
     echo '
@@ -38,7 +38,7 @@ if (isset($_POST['____________'])) {
                 timer: 2500,
                 showConfirmButton: false
               }, function(){
-                    window.location.href = "____________";
+                    window.location.href = "index.php";
               });
         });
         

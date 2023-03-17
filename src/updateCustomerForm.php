@@ -10,19 +10,20 @@
   <body>
 
 <?php
-require '____________';
+require '../connect.php';
 
-____________
-____________
-____________
+$sql_select_country = 'SELECT * FROM country ORDER BY CountryCode';
+$stmt = $conn->prepare($sql_select_country);
+$stmt->execute();
+
 echo "CustomerID = ".$_GET['CustomerID'];
 
 if (isset($_GET['CustomerID'])) {
     $sql_select_customer = 'SELECT * FROM customer WHERE CustomerID=?';
-    ____________________________________
+    $stmt_customer = $conn->prepare($sql_select_customer);
     $stmt->execute([$_GET['CustomerID']]);
     echo "get = ".$_GET['CustomerID'];
-    $result = ____________
+    $result = $stmt_customer->fetch(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -32,16 +33,16 @@ if (isset($_GET['CustomerID'])) {
         <div class="col-md-4"> <br>
           <h3>ฟอร์มแก้ไขข้อมูลลูกค้า</h3>
           <form action="updateCustomer.php" method="POST">
-           <input type="hidden" name="CustomerID" value="____________">
+           <input type="hidden" name="CustomerID" value= "<?= $_GET['CustomerID'];?> ">
             
                 <label for="name" class="col-sm-2 col-form-label"> ชื่อ:  </label>
               
-                <input type="text" name="Name" class="form-control" required value="____________">           
+                <input type="text" name="Name" class="form-control" required value=  >           
            
             
                 <label for="name" class="col-sm-2 col-form-label"> อีเมล์ :  </label>
              
-                <input type="email" name="Email" class="form-control" required value="____________">
+                <input type="email" name="Email" class="form-control" required value=  >
           
             <br> <button type="submit" class="btn btn-primary">แก้ไขข้อมูล</button>
           </form>
